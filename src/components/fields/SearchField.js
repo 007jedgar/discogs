@@ -40,7 +40,7 @@ const styles =  StyleSheet.create({
   },
 })
 
-function SearchField({ placeholder, value, onChangeText, onSubmitEditing, onClose, results,  }) {
+function SearchField({ placeholder, value, onChangeText, onSubmitEditing, onClose, }) {
   const inputRef = useRef(null)
   return (
     <View style={styles.container}>
@@ -63,13 +63,6 @@ function SearchField({ placeholder, value, onChangeText, onSubmitEditing, onClos
           <Image source={Icons.lightClose} style={styles.close} />
         </TouchableOpacity>
       </View> 
-      
-      {results && results.map((el, key) => {
-        return <View key={key+1}>
-            <Text>{el.text}</Text>
-            <Text>{el.date}</Text>
-          </View>
-      })}
     </View>
   )
 } 

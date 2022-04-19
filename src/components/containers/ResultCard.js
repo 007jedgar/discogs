@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import {
   Text,
   View,
@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native'
-import ExpoFastImage from 'expo-fast-image';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icons from '@assets/icons'
 
@@ -26,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
+    flex: 1,
     fontSize: wp(4.5),
     fontWeight: '700',
     color: '#454545',
@@ -35,21 +35,41 @@ const styles = StyleSheet.create({
   },
 })
 
-function ResultCard({ item, }) {
-  console.log(item)
+
+
+function ResultCard({ item, onPress }) {
   if (!item) return null;
 
+  const imagePicker = useMemo(() => {
+    if (item.thumb) return {uri: item.thumb}
+
+    let img;
+    switch(item.type) {
+      case 'artist':
+        return img = Icons.artist
+      case 'master':
+        return img = Icons.record
+      case 'label':
+        return img = Icons.record
+      default:
+        img = Icons.record
+    }
+  
+    return img
+  }, [item.type])
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.card}>
-        <Image source={item.thumb?{uri: item.thumb }:Icons.record} style={styles.thumb} />
+        <Image source={imagePicker} style={styles.thumb} />
         <View style={{flex: 1}}>
-          <Text style={styles.title}>{item.title}</Text>
-          {item.formats&&<Text style={styles.formats}>{item.formats[0].descriptions.join(", ")}</Text>}
+          <Text adjustsFontSizeToFit numberOfLines={2} style={styles.title}>{item.title}</Text>
+          {item.formats&&item.formats.descriptions?<Text style={styles.formats}>{item.formats[0].descriptions.join(", ")}</Text>:null}
           {item.format&&!item.formats?<Text style={styles.formats}>{item.format.join(", ")}</Text>:null}
+          {item.type?<Text style={styles.formats}>{item.type}</Text>:null}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 } 
 
