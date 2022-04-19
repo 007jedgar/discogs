@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet, Platform, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
@@ -8,10 +8,17 @@ import {
 } from '../scenes'
 
 const Stack = createNativeStackNavigator();
+const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight+20 : 0
+  }
+})
 
 function AppStack() {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={[{flex: 1}, styles.AndroidSafeArea]}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{

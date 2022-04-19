@@ -4,6 +4,7 @@ import {
   View,
   FlatList,
 } from 'react-native'
+import { StatusBar } from 'expo-status-bar';
 import { useSearchDiscogs } from '../hooks/useSearchDiscogs'
 import { useForm } from '../hooks/useForm'
 import {
@@ -36,6 +37,7 @@ function Search(props) {
 
   return (
     <View style={{flex: 1,}}>
+      <StatusBar />
       <SearchField 
         placeholder={"search"} 
         value={values.search} 
