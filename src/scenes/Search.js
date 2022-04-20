@@ -64,6 +64,7 @@ function Search(props) {
         ListFooterComponent={renderFooter()}
         onEndReached={onEndReached}
         onEndReachedThreshold={.001}
+        maxToRenderPerBatch={45}
       />
     </View>
   )
