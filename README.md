@@ -6,7 +6,7 @@ discogs search project
 #### 1. Clone the project
 
 ```bash
-git clone git@github.com:007jedgar/discogs.git
+git clone https://github.com/007jedgar/discogs.git
 ```
 ```bash
 cd discogs
