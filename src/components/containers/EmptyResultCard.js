@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
   },
 })
 
-function EmptyResultCard() {
+function EmptyResultCard({ error }) {
   return (
     <View style={{margin: wp(4)}}>
-      <Text style={styles.text}>Nothing Here</Text>
+      <Text style={styles.text}>{error?"An error has ocurred":"Nothing Here"}</Text>
       <View style={{flexDirection: 'row'}}>
         <View style={styles.img} />
         <View style={{}}>

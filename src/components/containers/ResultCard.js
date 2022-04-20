@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, {memo, useMemo} from 'react'
 import {
   Text,
   View,
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 })
-
 
 
 function ResultCard({ item, onPress }) {
@@ -73,4 +72,4 @@ function ResultCard({ item, onPress }) {
   )
 } 
 
-export { ResultCard }
+export default memo(ResultCard) 
